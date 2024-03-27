@@ -1,22 +1,37 @@
 ---
 layout: post
-title: SOC Automation Project
+title: SOC Automation Homelab
 date: 2024-03-25 14:15 -0400
 categories: [Labs]
-tags: [Cybersecurity, SIEM, SOAR]
+tags: [Cybersecurity, SIEM, SOAR, Network Security, Windows]
 image:
     path: /assets/img/SOCLab.png
     alt: 
 ---
 <link href="../../assets/css/terminal_styles.css" rel="stylesheet">
 
-Build a SOC lab that ingests logs in a SIEM, automates workflows in a SOAR, and documents with Case Management. to enhance incident response, creates tickets using TheHive Case Management tool, and threat detection capabilities.
+How are SOC analysts able to efficiently tackle security incidents across such large networks? The answer is automation! 
+
+In this lab, we create a Security Operations Center (SOC) environment that uses industry-standard free and open-source tools. We will deploy a Windows virtual machine and add functionality to forward important security events to Wazuh and create automatic responses through Shuffle. These responses will include gathering intelligence from sources online, documenting the event using a case management tool, and sending out emails containing details about the event to allow our analysts to remediate the issue.
+
+By delving into these tools, we'll learn their functionalities and how to utilize them to improve our incident response and threat detection capabilities.
 
 ---
 
 ## Introduction
 
-In this lab, we will create an automated Security Operations Center (SOC) environment. We will explore how automation enhances incident response, accelerates threat detection, and streamlines SOC workflows.
+To recreate a Security Operations Center environment, let's first look at the overall workflow we want to achieve:
+
+![An image of our project's workflow: our Windows VM's logs go to Wazuh, which uses Shuffle to create alerts in TheHive and gather online Virus data, and then emails to the SOC analyst](/assets/img/soc-automation-workflow.png)
+
+The general workflow is that our Windows machine will forward important security events into the Wazuh Manager. We will install Sysmon and the Wazuh agent locally to this machine.
+
+When Wazuh detects suspicious traffic, alerts are triggered and responsive actions occur. We will experiment with this by creating a custom rule that triggers when Mimikatz.exe is ran on our machine, by purposefully triggering it ourselves.
+
+<p style="margin-bottom:0">Shuffle is an automation tool that allows us to create a workflow that occurs when triggered. We will create create a webhook trigger event that will get activated by Wazuh when our custom rule occurs. This workflow will:</p>
+- Search the SHA-256 hash of the detected Mimikatz.exe using VirusTotal's API
+- Create an alert in TheHive case management tool
+- Send an email containing the security event's details to us to remediate
 
 ![Workflow Diagram for our Security Operations Lab](/assets/img/soc-automation-diagram.png)
 _**Diagram:** Data flow through our Environment_
@@ -50,11 +65,8 @@ Operating as a cloud-based incident response and case management tool, TheHive s
 ![Our case management tool, TheHive, is used to track and document incidents](/assets/img/soc-automation-thehive.png)
 _**Source:** [TheHive](https://github.com/TheHive-Project/TheHive/blob/main/images/Current_cases.png)_
 
-### Response Workflow
+### Responsive Action
 Upon receiving notification emails, SOC analysts interact with Shuffle to execute response actions. These actions encompass **performing remediation steps**, **communicating with stakeholders**, and these alerts as a **feedback loop** to use for continuously improving our environment.
-
-![An image of our project's workflow: our Windows VM's logs go to Wazuh, which uses Shuffle to create alerts in TheHive and gather online Virus data, and then emails to the SOC analyst](/assets/img/soc-automation-workflow.png)
-_**Diagram:** SOC Automation Project Workflow_
 
 ---
 
@@ -371,10 +383,9 @@ If you are running into errors, you can change the Find Action to `Send email sm
 
 ## Conclusion
 
-Security Information and Event Management Systems (SIEMs) are very powerful tools for detecting threats on a network and providing constant monitoring and visibility of what is occurring within your network. The ability to ingest and normalize large quantities and varieties of logs. 
-
-Gaining proficiency by getting hands-on experience with tools like `SIEMs` (Splunk, Wazuh), `SOARs` (Shuffle), and `Case Management` (TheHive) can only work to help you a become a effective security practitioner. 
+There are many powerful tools designed to aid in the detection and monitoring of a network. Security Information and Event Management Systems (SIEMs) provide the ability to ingest and normalize large quantities of data and many varieties of logs. Security orchestration, automation and response (SOAR) technologies help coordinate, execute and automate tasks and automation can make things a lot easier. It is always best practice to write documentation making case management tools indispensable.
 
 Shoutout to MyDFIR on YouTube for the original guide to this lab!<br/>
-I highly suggest his video series: [Intro](https://www.youtube.com/watch?v=Lb_ukgtYK_U), [Part 1](https://www.youtube.com/watch?v=XR3eamn8ydQ), [Part 2](https://www.youtube.com/watch?v=YxpUx0czgx4), [Part 3](https://www.youtube.com/watch?v=VuSKMPRXN1M), [Part 4](https://www.youtube.com/watch?v=amTtlN3uvFU), [Part 5](https://www.youtube.com/watch?v=GNXK00QapjQ). This homelab helped me get a better understanding of how these security tools can work together to create efficient workflows and create SIEM rules to automatically detect and alert when an attack is made on our network.
+I highly suggest his video series: [Intro](https://www.youtube.com/watch?v=Lb_ukgtYK_U), [Part 1](https://www.youtube.com/watch?v=XR3eamn8ydQ), [Part 2](https://www.youtube.com/watch?v=YxpUx0czgx4), [Part 3](https://www.youtube.com/watch?v=VuSKMPRXN1M), [Part 4](https://www.youtube.com/watch?v=amTtlN3uvFU), [Part 5](https://www.youtube.com/watch?v=GNXK00QapjQ), and I also highly suggest anyone interested in learning more check out the [SOC Level 1 path on TryHackMe](https://tryhackme.com/paths) as well!
 
+Gaining proficiency by getting hands-on experience with tools like `SIEMs` (Splunk, Wazuh), `SOARs` (Shuffle), and `Case Management` (TheHive) can only work to help you a become a effective security practitioner.
