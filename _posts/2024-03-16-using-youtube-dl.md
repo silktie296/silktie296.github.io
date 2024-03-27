@@ -1,24 +1,24 @@
 ---
 layout: post
-title: Downloading Youtube videos directly through youtube-dl
+title: Downloading YouTube videos directly through youtube-dl
 date: 2024-03-16 15:59 -0400
 categories: [Tools]
 tags: [Tools]
 image:
     path: /assets/img/youtube-dl-batch.png
-    alt: Huntress CTF Certificate, placed in the Top 2.6% with 100% of challenges solved.
+    alt: Batch script automatically downloading YouTube videos to a Plex library.
 ---
 <link href="../../assets/css/terminal_styles.css" rel="stylesheet">
 
-How to download YouTube videos directly in the command-line and streamline workflow into Plex with a Batch file.
+A tool for downloading YouTube videos directly through your terminal, and how to integrate it into Plex.
 
 ---
 
 ## Introduction and Purpose
 
-I was looking for a way to directly download YouTube videos without using sketchy converter websites, and I came across a tool on GitHub that would allow me to do this directly through the Windows command-line,  [`youtube-dl`](https://github.com/ytdl-org/youtube-dl). 
+I was looking for a way to directly download YouTube videos without using sketchy converter websites, and I came across a tool on GitHub that would allow me to do this directly through the Windows command line,  [`youtube-dl`](https://github.com/ytdl-org/youtube-dl). 
 
-This blog post will explain how to download this tool, go through its usage and documentation, and explore how we can set up a batch script to streamline this process to download these files directly to a Plex library and have it update to be watched immediately.
+This blog post will explain how to download this tool, go through its usage and documentation, and explore how we can set up a batch script to streamline this process to download these files directly to a Plex library and have it updated to be watched immediately.
 
 ---
 
@@ -26,9 +26,9 @@ This blog post will explain how to download this tool, go through its usage and 
 
 `yt-downloader` works on Linux, Mac, and Windows, with solid installation instructions and usage [documentation on GitHub](https://github.com/ytdl-org/youtube-dl#installation).
 
-> To download the utility onto Windows, you can either download the .exe file to any location on your PATH or using the pip command.
+> To download the utility onto Windows, you can either download the .exe file to any location on your PATH or use the pip command.
 
-I ran into issues with the latest version on the youtube-dl repository, but was able to get it working using the nightly version.
+I ran into issues with the latest version on the youtube-dl repository but was able to get it working using the nightly version.
 
 I used the pip installation method since I had it already installed, but I will provide explanations for both methods on a fresh Windows 11 machine.
 
@@ -59,7 +59,7 @@ If you get a message saying the operation "cannot proceed because msvcr100.dll w
 
 ### Method 2: Downloading with Python, pip, and git
 
-pip is the standard package manager used by Python to easily import modules to use when writing python scripts. 
+pip is the standard package manager used by Python to easily import modules to use when writing Python scripts. 
 
 This also means that pip comes installed with Python, and we can get it by [downloading the latest version of Python](https://www.python.org/downloads/) (3.12.2 as of writing) from the official website. 
 
@@ -67,7 +67,7 @@ This also means that pip comes installed with Python, and we can get it by [down
   - "Use admin privileges when installing py.exe"
   - "Add python.exe to PATH"
 
-After that you should be able to use the `py` command in the command prompt. <br/>It should open give an output like this:
+After that, you should be able to use the `py` command in the command prompt. <br/>It should open and have the following output:
 
 <div class="language-console">
     <div class="code-header">
@@ -79,7 +79,7 @@ After that you should be able to use the `py` command in the command prompt. <br
     </div>
 </div>
 
-If the Windows Store opens instead when using the command, you can tell Windows it installed doing the following:
+If the Windows Store opens instead when using the command, you can tell Windows it is installed by doing the following:
 - Open Settings: 'System > Settings > Apps > Apps & features'
 - Select 'App execution aliases'
 - Uncheck the entries for: 'App Installer - python.exe' and 'App Installer - python3.exe'
@@ -103,7 +103,7 @@ We can now download the nightly version of youtube-dl using the following:
 
 ## Usage
 
-After install, you should now be able to download videos from YouTube using the `youtube-dl <YT-URL>` command.
+After installation, you should now be able to download videos from YouTube using the `youtube-dl <YT-URL>` command.
 
 You can view the [documentation](https://github.com/ytdl-org/youtube-dl#description) on Github, or using the help command: `youtube-dl -h`
 
@@ -111,7 +111,7 @@ You can view the [documentation](https://github.com/ytdl-org/youtube-dl#descript
 
 ### Creating a Batch Script to utilize with Plex
 
-If you are hosting a Plex Media Server, you can access media files anywhere you can download Plex (which includes on mobile and most Smart TVs). 
+If you are hosting a Plex Media Server, you can access media files anywhere you can download Plex (which includes mobile and most Smart TVs). 
 
 This is handy if you have a backlog of YouTube videos that you'd like to watch on TV without advertisements.
 
