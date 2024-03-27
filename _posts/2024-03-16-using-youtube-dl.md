@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Downloading YouTube videos directly through youtube-dl
+title: Downloading YouTube videos directly using youtube-dl
 date: 2024-03-16 15:59 -0400
 categories: [Tools]
 tags: [Tools]
