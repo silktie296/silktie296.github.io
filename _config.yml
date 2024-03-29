@@ -10,7 +10,7 @@ timezone: America/New_York
 
 title: Austin Crouch
 
-tagline: Cybersecurity enthusiast learning the tactics, techniques, and procedures used to secure and protect systems.  # it will display as the sub-title
+tagline: Cybersecurity enthusiast learning the TTPs to secure and protect systems.  # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   A minimal, responsive and feature-rich Jekyll theme for technical writing.
@@ -72,7 +72,7 @@ theme_mode: dark
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar: "/assets/img/avatar.png"
+# avatar: "/assets/img/avatar.png"
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
